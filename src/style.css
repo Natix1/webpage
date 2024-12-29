@@ -5,6 +5,7 @@ body {
   background-color: #1a1a1a; /* Darker background for body */
   opacity: 1; /* Set to 1 for full visibility */
   overflow: auto;
+  background: url("./src/noise.svg");
 }
 
 body::before {
@@ -34,7 +35,7 @@ body::before {
   background-blend-mode: overlay;
   background-repeat: repeat;
   z-index: -1;
-  opacity: 0.8; /* Slightly more opaque for better visibility */
+  opacity: 0.5; /* Slightly more opaque for better visibility */
   filter: blur(2px);
 }
 
@@ -44,27 +45,14 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(50, 50, 50, 0.9); /* Darker grey for loading screen */
+  background: rgb(61, 12, 12); /* Darker background for better visibility */
   z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 2rem;
-  color: #ffffff; /* White text for loading screen */
-}
-
-.loading-text {
-  animation: fadeInOut 1s infinite;
-}
-
-@keyframes fadeInOut {
-  0%,
-  100% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
+  color: #ffffff;
+  opacity: 1;
 }
 
 body::-webkit-scrollbar {

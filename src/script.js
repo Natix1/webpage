@@ -1,56 +1,58 @@
-function updateVisitCount() {
-    fetch('https://api.natixone.xyz/v1/increment_views')
+function updateVisitCount(count) {
+    const viewsElement = document.getElementById('page-views');
+    if (viewsElement) {
+        viewsElement.textContent = count || '0';
+    }
+}
+
+function getVisitCount() {
+    return fetch('https://api.natixone.xyz/v1/increment_views')
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             return response.text();
         })
-        .then(data => {
-            const viewsElement = document.getElementById('page-views');
-            if (viewsElement) {
-                viewsElement.textContent = data || '0';
-            }
-        })
         .catch(error => {
             console.error('Failed to update view count:', error);
-            const viewsElement = document.getElementById('page-views');
-            if (viewsElement) {
-                viewsElement.textContent = '?';
-            }
+            return '?';
         });
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-    updateVisitCount();
+const visitCount = getVisitCount();
+// we can fetch before the DOM is loaded
 
+document.addEventListener("DOMContentLoaded", function() {
+    visitCount.then(updateVisitCount);
 
     const loadingScreen = document.getElementById('loading-screen');
-    let loadingText = "Loading";
+    const loadingBaseText = "Loading, please wait";
+    
+    function updateLoadingAnimation(text, dots) {
+        return text + '.'.repeat(dots);
+    }
+    
+    let dotCount = 0;
     const loadingInterval = setInterval(() => {
-        if (loadingText.length < 10) {
-            loadingText += ".";
-        } else {
-            loadingText = "Loading";
-        }
-        loadingScreen.innerHTML = loadingText;
-    }, 1000);
+        dotCount = (dotCount + 1) % 4;
+        loadingScreen.innerHTML = updateLoadingAnimation(loadingBaseText, dotCount);
+    }, 300);
 
     const hideLoadingScreen = () => {
+        clearInterval(loadingInterval);
+        loadingScreen.style.transition = 'opacity 0.3s';
+        loadingScreen.style.opacity = '0';
+        
         setTimeout(() => {
-            loadingScreen.style.transition = 'opacity 0.5s';
-            loadingScreen.style.opacity = '0';
-            setTimeout(() => {
-                loadingScreen.style.display = 'none';
-                loadingScreen.remove();
-                clearInterval(loadingInterval);
-            }, 500);
-        }, 2000);
+            loadingScreen.remove();
+        }, 300);
     };
 
-    if (document.readyState === 'complete') {
-        hideLoadingScreen();
-    } else {
-        window.addEventListener('load', hideLoadingScreen);
-    }
+    setTimeout(() => {
+        if (document.readyState === 'complete') {
+            hideLoadingScreen();
+        } else {
+            window.addEventListener('load', hideLoadingScreen, { once: true });
+        }
+    }, 1000);
 });
