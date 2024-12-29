@@ -1,5 +1,5 @@
 function updateVisitCount() {
-    fetch('https://api.natixone.xyz/contactpage/views/getplusincrement')
+    fetch('https://api.natixone.xyz/v1/increment_views')
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
