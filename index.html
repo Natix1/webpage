@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Webpage</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./src/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body class="min-h-screen bg-gray-100">
+    <div id="loading-screen">Loading...</div>
+    <div class="container mx-auto p-4">
+        <div class="text-top text-center">
+            <p class="text-1xl font-bold mt-4">Page views</p>
+            <div class="text-4xl font-bold mt-1">
+                <i class="fas fa-eye"></i>
+                <span id="page-views">0</span>
+            </div>
+        </div>
+        <div class="flex justify-center items-center min-h-screen">
+            <div class="text-center mt-8">
+                <!-- Page views element (modified by JS)-->
+                <!-- Eye Icon from fontawesome -->
+                <h1 class="text-4xl font-bold mt-4">I'm natix1.</h1>
+                <!-- Add some margin -->
+                <!-- Now some hover effects -->
+                <p class="text-1xl font-bold mt-4 break-words max-w-md mx-auto">
+                    I am definietly not a web developer. I mainly<br>
+                    focus on Python but I am always down to learn lower level<br>
+                    like the whole C family and java. I also like to play with<br>
+                    my VPS and make some cool stuff with it, like this site.<br>
+                    Below, you'll find some links to my social media. <br>
+                </p>
+                <div class="text-4xl font-bold mt-4">
+                    <a href="https://www.instagram.com/nat1xone/" target="_blank" class="mx-2 hover:text-pink-500 transition duration-300">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://x.com/natixdev" target="_blank" class="mx-2 hover:text-blue-500 transition duration-300">
+                        <i class="fab fa-x-twitter"></i>
+                    </a>
+                    <a href="https://www.facebook.com" target="_blank" class="mx-2 hover:text-blue-700 transition duration-300">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./src/script.js"></script>
+</body>
+</html>

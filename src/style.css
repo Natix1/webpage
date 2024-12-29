@@ -1,0 +1,49 @@
+body {
+    background: url('./src/noise.svg'), linear-gradient(135deg, #a8edea 0%, #bce7f0 20%, #d4f1f9 40%, #fed6e3 60%, #fbc2eb 80%, #a8edea 100%); /* Ensure noise.svg is displayed */
+    background-blend-mode: overlay;
+    background-repeat: repeat;
+    position: relative;
+    z-index: 0;
+    opacity: 1;
+    filter: none;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('./src/noise.svg'), linear-gradient(135deg, #a8edea 0%, #bce7f0 20%, #d4f1f9 40%, #fed6e3 60%, #fbc2eb 80%, #a8edea 100%); /* Ensure noise.svg is displayed */
+    background-blend-mode: overlay;
+    background-repeat: repeat;
+    z-index: -1;
+    opacity: 0.4;
+    filter: blur(2px); /* Add blur effect */
+    background-image: url('./src/noise.svg');
+}
+
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: #333;
+}
+
+.loading-text {
+    animation: fadeInOut 1s infinite;
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.75; }
+}
