@@ -2,21 +2,22 @@ function updateVisitCount() {
     fetch('https://api.natixone.xyz/contactpage/views/getplusincrement')
         .then(response => {
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
-            return response.text(); // Get the response as plain text
+            return response.text();
         })
         .then(data => {
-            // Update the span with the new visit count
             const viewsElement = document.getElementById('page-views');
             if (viewsElement) {
-                viewsElement.textContent = data; // Set the span's text to the returned visit count
-            } else {
-                console.error("Element with class 'views' not found.");
+                viewsElement.textContent = data || '0';
             }
         })
         .catch(error => {
-            console.error('There has been a problem with your fetch operation:', error);
+            console.error('Failed to update view count:', error);
+            const viewsElement = document.getElementById('page-views');
+            if (viewsElement) {
+                viewsElement.textContent = '?';
+            }
         });
 }
 

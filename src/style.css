@@ -1,11 +1,9 @@
 body {
-    background: url('./src/noise.svg'), linear-gradient(135deg, #a8edea 0%, #bce7f0 20%, #d4f1f9 40%, #fed6e3 60%, #fbc2eb 80%, #a8edea 100%); /* Ensure noise.svg is displayed */
-    background-blend-mode: overlay;
-    background-repeat: repeat;
     position: relative;
     z-index: 0;
-    opacity: 1;
     filter: none;
+    background-color: #1a1a1a; /* Darker background for body */
+    opacity: 1; /* Set to 1 for full visibility */
 }
 
 body::before {
@@ -15,13 +13,13 @@ body::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('./src/noise.svg'), linear-gradient(135deg, #a8edea 0%, #bce7f0 20%, #d4f1f9 40%, #fed6e3 60%, #fbc2eb 80%, #a8edea 100%); /* Ensure noise.svg is displayed */
+    background: url('./src/noise.svg'), 
+                linear-gradient(135deg, rgba(48, 25, 75, 0.9) 0%, rgba(74, 20, 140, 0.8) 40%, rgba(45, 5, 75, 0.8) 70%, rgba(26, 0, 50, 0.9) 100%);
     background-blend-mode: overlay;
     background-repeat: repeat;
     z-index: -1;
-    opacity: 0.4;
-    filter: blur(2px); /* Add blur effect */
-    background-image: url('./src/noise.svg');
+    opacity: 0.8; /* Slightly more opaque for better visibility */
+    filter: blur(2px);
 }
 
 #loading-screen {
@@ -30,13 +28,13 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(50, 50, 50, 0.9); /* Darker grey for loading screen */
     z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 2rem;
-    color: #333;
+    color: #ffffff; /* White text for loading screen */
 }
 
 .loading-text {
@@ -44,6 +42,10 @@ body::before {
 }
 
 @keyframes fadeInOut {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.75; }
+    0%, 100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
 }
