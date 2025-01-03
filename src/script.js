@@ -6,7 +6,7 @@ function updateVisitCount(count) {
 }
 
 function getVisitCount() {
-    return fetch('https://api.natixone.xyz/v1/increment_views')
+    return fetch('https://api.natixone.xyz/visits/increment')
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
