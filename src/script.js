@@ -5,7 +5,7 @@ function updateVisitCount(count) {
     }
 }
 
-function getVisitCount() {
+function getAndIncrementVisitCount() {
     return fetch('https://api.natixone.xyz/visits/increment')
         .then(response => {
             if (!response.ok) {
@@ -19,7 +19,21 @@ function getVisitCount() {
         });
 }
 
-const visitCount = getVisitCount();
+function getVisitCount() {
+    return fetch('https://api.natixone.xyz/visits')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.text();
+        })
+        .catch(error => {
+            console.error('Failed to update view count:', error);
+            return '?';
+        });
+}
+
+const visitCount = getAndIncrementVisitCount();
 // we can fetch before the DOM is loaded
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -54,5 +68,9 @@ document.addEventListener("DOMContentLoaded", function() {
         } else {
             window.addEventListener('load', hideLoadingScreen, { once: true });
         }
-    }, 1000);
+    }, 300);
+
+    setInterval(() => {
+        getVisitCount().then(updateVisitCount);
+    }, 2500);
 });
